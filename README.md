@@ -1,5 +1,7 @@
 # 🍔 Gute Burguer — Cardápio Digital & Sistema de Gestão
 
+[![Integração contínua](https://github.com/AlisonBaade/GuteBurguer/actions/workflows/ci.yml/badge.svg)](https://github.com/AlisonBaade/GuteBurguer/actions/workflows/ci.yml)
+
 Projeto full stack de cardápio digital desenvolvido com **Django + Django REST Framework** no backend e **React + TypeScript** no frontend.
 
 A aplicação oferece um cardápio responsivo, gerenciamento de pratos e categorias pelo Django Admin, integração com WhatsApp para pedidos e um dashboard de estatísticas de acesso.
