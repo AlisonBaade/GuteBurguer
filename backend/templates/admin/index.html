@@ -1,0 +1,53 @@
+{% extends "admin/index.html" %}
+{% load i18n static %}
+
+{% block content %}
+<div id="gute-analytics-container" style="margin-bottom: 30px;">
+    <h2 style="color: #ff6f00; font-weight: 800; margin-bottom: 15px; font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px;">
+        🍔 Dashboard de Acessos ao Cardápio Digital (Gute Burguer)
+    </h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px;">
+        <div style="background: #1c1c1e; border: 1px solid #2d2d30; border-left: 4px solid #ff6f00; border-radius: 10px; padding: 18px 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.3);">
+            <div style="font-size: 11px; font-weight: 700; color: #a1a1a6; text-transform: uppercase; letter-spacing: 0.8px;">Acessos Este Mês</div>
+            <div id="stat-mes" style="font-size: 34px; font-weight: 900; color: #ffffff; margin: 8px 0 4px 0;">...</div>
+            <div style="font-size: 12px; color: #ff8f00; font-weight: 600;">Visitantes únicos mensais</div>
+        </div>
+
+        <div style="background: #1c1c1e; border: 1px solid #2d2d30; border-left: 4px solid #30d158; border-radius: 10px; padding: 18px 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.3);">
+            <div style="font-size: 11px; font-weight: 700; color: #a1a1a6; text-transform: uppercase; letter-spacing: 0.8px;">Acessos Hoje</div>
+            <div id="stat-hoje" style="font-size: 34px; font-weight: 900; color: #ffffff; margin: 8px 0 4px 0;">...</div>
+            <div style="font-size: 12px; color: #30d158; font-weight: 600;">Visitantes nas últimas 24h</div>
+        </div>
+
+        <div style="background: #1c1c1e; border: 1px solid #2d2d30; border-left: 4px solid #0a84ff; border-radius: 10px; padding: 18px 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.3);">
+            <div style="font-size: 11px; font-weight: 700; color: #a1a1a6; text-transform: uppercase; letter-spacing: 0.8px;">Últimos 30 Dias</div>
+            <div id="stat-30dias" style="font-size: 34px; font-weight: 900; color: #ffffff; margin: 8px 0 4px 0;">...</div>
+            <div style="font-size: 12px; color: #0a84ff; font-weight: 600;">Acompanhamento contínuo</div>
+        </div>
+
+        <div style="background: #1c1c1e; border: 1px solid #2d2d30; border-left: 4px solid #bf5af2; border-radius: 10px; padding: 18px 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.3);">
+            <div style="font-size: 11px; font-weight: 700; color: #a1a1a6; text-transform: uppercase; letter-spacing: 0.8px;">Total Acumulado</div>
+            <div id="stat-geral" style="font-size: 34px; font-weight: 900; color: #ffffff; margin: 8px 0 4px 0;">...</div>
+            <div style="font-size: 12px; color: #bf5af2; font-weight: 600;">Desde o lançamento</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch("/api/estatisticas-acesso/")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("stat-mes").textContent = data.total_mes || 0;
+                document.getElementById("stat-hoje").textContent = data.total_hoje || 0;
+                document.getElementById("stat-30dias").textContent = data.total_30_dias || 0;
+                document.getElementById("stat-geral").textContent = data.total_geral || 0;
+            })
+            .catch(err => {
+                console.error("Erro ao carregar estatísticas Gute Burguer:", err);
+            });
+    });
+</script>
+
+{{ block.super }}
+{% endblock %}

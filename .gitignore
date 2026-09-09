@@ -1,0 +1,26 @@
+# Variáveis de ambiente e segredos
+.env
+.env.local
+*.env
+
+# Python / Django
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+staticfiles/
+media/
+
+# Frontend / Node / Vite
+node_modules/
+dist/
+build/
+.vite/
+*.tsbuildinfo
+
+# IDEs e sistema operacional
+.idea/
+.vscode/
+*.DS_Store
