@@ -51,7 +51,7 @@ A versão em produção pode ser acessada em:
 - GitHub Actions
 - Testes automatizados no backend
 - ESLint no frontend
-- Auditoria de dependências
+- Dependabot para atualização de dependências
 - Scanner de segredos no CI
 
 ## 🚀 Executando localmente
@@ -81,7 +81,7 @@ Se quiser personalizar as configurações:
 cp .env.example .env
 ```
 
-O arquivo `.env` não deve ser versionado.
+O arquivo `.env` não deve ser versionado. O número de WhatsApp configurado por padrão é apenas demonstrativo; para testar o redirecionamento com um número real, altere `VITE_WHATSAPP_NUMBER` e `VITE_WHATSAPP_DISPLAY` somente no seu `.env` local.
 
 ### 3. Suba a aplicação
 
@@ -122,6 +122,12 @@ Depois acesse:
 ```text
 http://localhost:8000/gute-admin/
 ```
+
+### 6. Cadastre os dados do cardápio
+
+O banco PostgreSQL local começa vazio. Pelo Django Admin, cadastre primeiro as **categorias** e depois os **pratos**, incluindo preços, descrição, imagem e, se desejar, promoção/preço promocional.
+
+Assim que os registros forem salvos, eles passam a ser disponibilizados pela API e aparecem automaticamente no frontend.
 
 ## 🧪 Testes e validações
 
